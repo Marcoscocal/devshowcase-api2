@@ -12,6 +12,7 @@ public class ProjectRequestDTO {
     private String description;
 
     @NotBlank(message = "A URL do repositório é obrigatória")
+    @org.hibernate.validator.constraints.URL(message = "A URL do repositório deve ser válida")
     private String repositoryUrl;
 
     @NotNull(message = "O ID do perfil é obrigatório")

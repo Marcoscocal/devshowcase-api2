@@ -15,6 +15,9 @@ public class Project {
     private String description;
     private String repositoryUrl;
 
+    private Double averageRating = 0.0;
+    private Integer upvotes = 0;
+
     // Relacionamento N : 1 com Profile
     @ManyToOne
     @JoinColumn(name = "profile_id", nullable = false)
@@ -44,6 +47,10 @@ public class Project {
     public void setDescription(String description) { this.description = description; }
     public String getRepositoryUrl() { return repositoryUrl; }
     public void setRepositoryUrl(String repositoryUrl) { this.repositoryUrl = repositoryUrl; }
+    public Double getAverageRating() { return averageRating; }
+    public void setAverageRating(Double averageRating) { this.averageRating = averageRating; }
+    public Integer getUpvotes() { return upvotes; }
+    public void setUpvotes(Integer upvotes) { this.upvotes = upvotes; }
     public Profile getProfile() { return profile; }
     public void setProfile(Profile profile) { this.profile = profile; }
     public List<Technology> getTechnologies() { return technologies; }

@@ -1,8 +1,8 @@
 package br.com.mmpj.devshowcase.controller;
 
 import br.com.mmpj.devshowcase.dto.TechnologyRequestDTO;
-import br.com.mmpj.devshowcase.model.Technology;
-import br.com.mmpj.devshowcase.repository.TechnologyRepository;
+import br.com.mmpj.devshowcase.dto.TechnologyResponseDTO;
+import br.com.mmpj.devshowcase.service.TechnologyService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,20 +16,16 @@ import java.util.List;
 public class TechnologyController {
 
     @Autowired
-    private TechnologyRepository technologyRepository;
+    private TechnologyService technologyService;
 
     @PostMapping
-    public ResponseEntity<Technology> createTechnology(@RequestBody @Valid TechnologyRequestDTO dto) {
-        Technology tech = new Technology();
-        tech.setName(dto.getName());
-
-        Technology saved = technologyRepository.save(tech);
+    public ResponseEntity<TechnologyResponseDTO> createTechnology(@RequestBody @Valid TechnologyRequestDTO dto) {
+        TechnologyResponseDTO saved = technologyService.createTechnology(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
     @GetMapping
-    public ResponseEntity<List<Technology>> getAllTechnologies() {
-        List<Technology> list = technologyRepository.findAll();
-        return ResponseEntity.ok(list);
+    public ResponseEntity<List<TechnologyResponseDTO>> getAllTechnologies() {
+        return ResponseEntity.ok(technologyService.getAllTechnologies());
     }
 }
